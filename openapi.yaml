@@ -1,0 +1,53 @@
+openapi: 4.0.0
+info:
+  title: Visualizador de Gastos
+  version: "1.0.0"
+
+paths:
+  /ver_gastos:
+    post:
+      operationId: verGastos
+      description: "Obtiene el estado actual de los gastos"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consulta:
+                  type: string
+                  description: "Visualizar gastos actuales"
+                detalle:
+                  type: string
+                  description: "muestra la información que solicite el usuario"
+      responses:
+        '200':
+          description: "A continuación te presento el estado de tus gastos"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                  resultados:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        articulo:
+                          type: string
+                          description: "Total gastado"
+                        cantidad:
+                          type: number
+                          description: "Saldo disponible"
+                        gasto:
+                          type: number
+                          description: "% disponible"
+                      required:
+                        - articulo
+                        - cantidad
+                        - gasto
+
+servers:
+  - url: "https://hook.us2.make.com/mgdt9ys9pb5otiw8s3qwj7b7ohap2u4o"
